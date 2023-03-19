@@ -8,7 +8,7 @@ This template should help get you started developing with React 18 and Typescrip
 
 ## 简介
 
-基于 React 18  + Typescript + Antd5 开发得项目模板
+基于 React 18 + Typescript + Antd5 开发得项目模板
 
 ## 特性
 
