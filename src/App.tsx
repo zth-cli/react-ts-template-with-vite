@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import Counter from './components/counter'
+import Clock from '@/components/Clock'
 import { ConfigProvider, DatePicker } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
 import 'antd/dist/reset.css'
@@ -8,6 +9,9 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const updataCount = () => {
+    setCount(count + 1)
+  }
   return (
     <div className='App'>
       <ConfigProvider locale={zhCN}>
@@ -21,9 +25,10 @@ function App() {
         </div>
         <h1>Vite + React</h1>
         <div className='card'>
-          <Counter count={count} onClick={() => setCount((count) => count + 1)}></Counter>
+          <Counter count={count} onClick={updataCount}></Counter>
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
           <DatePicker />
+          <Clock buttonText='按钮' />
           <p>
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>

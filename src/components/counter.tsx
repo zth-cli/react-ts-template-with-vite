@@ -3,7 +3,7 @@ export interface Props {
   name?: string
   onClick(): void
 }
-const Counter: React.FC<Props> = (props) => {
-  return <button onClick={() => props.onClick()}>count is {props.count}</button>
+const Counter: React.FC<Props> = ({ count, onClick }) => {
+  return <button onClick={onClick}>count is {count}</button>
 }
 export default Counter
