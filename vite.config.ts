@@ -13,7 +13,7 @@ export default defineConfig({
       failOnError: false,
     }),
     AutoImport({
-      imports: ['react', 'react-router-dom'], // 自动导入vue和vue-router等相关函数
+      imports: ['react', 'react-router-dom', 'ahooks'], // 自动导入vue和vue-router等相关函数
       eslintrc: {
         enabled: true, // 若没此json文件，先开启，生成后在关闭
         filepath: './.eslintrc-auto-import.json', // 默认

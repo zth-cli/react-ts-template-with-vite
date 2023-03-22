@@ -1,42 +1,19 @@
-// import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import Counter from './components/counter'
-import Clock from '@/components/Clock'
-import { ConfigProvider, DatePicker } from 'antd'
-import zhCN from 'antd/locale/zh_CN'
-import 'antd/dist/reset.css'
-import './App.css'
+import { Route, RouteObject, Routes } from 'react-router-dom'
+import { router } from './router'
+import AuthRoute from './router/AuthRoute'
 
-function App() {
-  const [count, setCount] = useState(0)
-  const updataCount = () => {
-    setCount(count + 1)
+const App = () => {
+  // 处理我们的routers
+  const RouteAuthFun = (routeList: RouteObject[]) => {
+    return routeList.map((item) => {
+      return (
+        <Route path={item.path} element={<AuthRoute key={item.path}>{item.element}</AuthRoute>} key={item.path}>
+          {/* 递归调用，因为可能存在多级的路由 */}
+          {item?.children && RouteAuthFun(item.children)}
+        </Route>
+      )
+    })
   }
-  return (
-    <div className='App'>
-      <ConfigProvider locale={zhCN}>
-        <div>
-          <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-            <img src='/vite.svg' className='logo' alt='Vite logo' />
-          </a>
-          <a href='https://reactjs.org' target='_blank' rel='noreferrer'>
-            <img src={reactLogo} className='logo react' alt='React logo' />
-          </a>
-        </div>
-        <h1>Vite + React</h1>
-        <div className='card'>
-          <Counter count={count} onClick={updataCount}></Counter>
-          <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-          <DatePicker />
-          <Clock buttonText='按钮' />
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
-      </ConfigProvider>
-    </div>
-  )
+  return <Routes>{RouteAuthFun(router)}</Routes>
 }
-
 export default App
