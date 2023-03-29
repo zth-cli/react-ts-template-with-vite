@@ -165,7 +165,7 @@ class FetchHttp {
   public get<T>(url: string, params?: any, config?: AxiosRequestConfigs): Promise<T> {
     return this.request<T>('get', url, params, config)
   }
-  public async dowmload(url: string, params: any, fileName: string, fileType = 'xls') {
+  public async dowmload(url: string, params: any, fileName: string, fileType: keyof typeof FILES_TYPES = 'xls') {
     const res = await this.request<BlobPart>('get', url, params, { responseType: 'blob' })
     const blob: Blob = new Blob([res], { type: FILES_TYPES[fileType] || 'application/vnd.ms-excel' })
     const link: HTMLAnchorElement = document.createElement('a')

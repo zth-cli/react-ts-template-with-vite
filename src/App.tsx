@@ -1,7 +1,6 @@
 import { Route, RouteObject, Routes } from 'react-router-dom'
 import { router } from './router'
 import AuthRoute from './router/AuthRoute'
-import { apiGet } from '@/api'
 
 const App = () => {
   // 处理我们的routers
@@ -15,7 +14,6 @@ const App = () => {
       )
     })
   }
-  apiGet('/api/user')
   return <Routes>{RouteAuthFun(router)}</Routes>
 }
 export default App
