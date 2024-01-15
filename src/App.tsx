@@ -4,11 +4,9 @@ import AuthRoute from './router/AuthRoute'
 import { apiGet } from '@/api'
 
 const App = () => {
-  const initalRef = useRef(0)
   useEffect(() => {
     console.log(1)
-    initalRef.current++
-    console.log(initalRef.current)
+
     apiGet('/api/getUserInfo').then((res) => {
       console.log(res)
     })
