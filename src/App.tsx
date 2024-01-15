@@ -4,6 +4,15 @@ import AuthRoute from './router/AuthRoute'
 import { apiGet } from '@/api'
 
 const App = () => {
+  const initalRef = useRef(0)
+  useEffect(() => {
+    console.log(1)
+    initalRef.current++
+    console.log(initalRef.current)
+    apiGet('/api/getUserInfo').then((res) => {
+      console.log(res)
+    })
+  }, [])
   // 处理我们的routers
   const RouteAuthFun = (routeList: RouteObject[]) => {
     return routeList.map((item) => {
@@ -15,7 +24,7 @@ const App = () => {
       )
     })
   }
-  apiGet('/api/user')
+
   return <Routes>{RouteAuthFun(router)}</Routes>
 }
 export default App
