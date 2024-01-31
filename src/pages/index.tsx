@@ -32,7 +32,7 @@ export default function Index() {
         dataSource={data?.data}
         loading={loading}
         renderItem={(item, index) => (
-          <List.Item>
+          <List.Item key={index}>
             <List.Item.Meta
               title={
                 <a target='_blank' href={item.url} rel='noreferrer'>

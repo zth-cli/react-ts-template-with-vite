@@ -10,7 +10,7 @@ const AuthRoute = ({ children }: any) => {
   const isExist = matchedRoutes?.some((item) => item.pathname == location.pathname)
   useEffect(() => {
     if (token === '') {
-      message.error('token 过期，请重新登录!')
+      location.pathname == '/login' && message.error('token 过期，请重新登录!')
       navigate('/login')
     }
     // 这里判断条件是：token 存在并且是匹配到路由并且是已经登录的状态
