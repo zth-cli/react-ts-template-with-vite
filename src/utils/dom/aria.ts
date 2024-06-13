@@ -15,7 +15,7 @@ export const isVisible = (element: HTMLElement) => {
 
 export const obtainAllFocusableElements = (element: HTMLElement): HTMLElement[] => {
   return Array.from(element.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENT_SELECTORS)).filter(
-    (item: HTMLElement) => isFocusable(item) && isVisible(item)
+    (item: HTMLElement) => isFocusable(item) && isVisible(item),
   )
 }
 

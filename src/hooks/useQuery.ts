@@ -1,6 +1,6 @@
 import { http } from '@/utils/http'
 
-function useQuery<T>(url: string, params?: unknown) {
+function useQuery<T>(method: 'GET' | 'POST', url: string, params?: unknown) {
   const [data, setData] = useState<T>()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -10,7 +10,7 @@ function useQuery<T>(url: string, params?: unknown) {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await http.get<T>(url, params, { signal: controller.signal })
+        const response = await http.request<T>(method, url, params, { signal: controller.signal })
         setData(response)
       } catch (error) {
         setError(error as any)
@@ -27,11 +27,11 @@ function useQuery<T>(url: string, params?: unknown) {
   return { data, error, loading }
 }
 function useGetQuery<T>(url: string, params?: unknown) {
-  const { data, error, loading } = useQuery<T>(url, params)
+  const { data, error, loading } = useQuery<T>('GET', url, params)
   return { data, error, loading }
 }
 function usePostQuery<T>(url: string, params?: unknown) {
-  const { data, error, loading } = useQuery<T>(url, params)
+  const { data, error, loading } = useQuery<T>('POST', url, params)
   return { data, error, loading }
 }
 export { useQuery, useGetQuery, usePostQuery }

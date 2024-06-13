@@ -7,7 +7,7 @@ const App = () => {
   const RouteAuthFun = (routeList: RouteObject[]) => {
     return routeList.map((item) => {
       return (
-        <Route path={item.path} element={<AuthRoute key={item.path}>{item.element}</AuthRoute>} key={item.path}>
+        <Route path={item.path} key={item.path} element={<AuthRoute key={item.path}>{item.element}</AuthRoute>}>
           {/* 递归调用，因为可能存在多级的路由 */}
           {item?.children && RouteAuthFun(item.children)}
         </Route>

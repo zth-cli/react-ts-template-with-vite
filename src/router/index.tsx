@@ -11,8 +11,8 @@ const router: RouteObject[] = [
     children: [
       { path: '/home', element: lazyLoad(lazy(() => import('@/pages/index'))) },
       { path: '/about', element: lazyLoad(lazy(() => import('@/pages/about'))) },
-      { path: '*', element: <NotFound /> },
     ],
   },
+  { path: '*', element: <NotFound /> },
 ]
 export { router }

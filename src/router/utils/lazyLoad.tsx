@@ -1,5 +1,5 @@
 import { Spin } from 'antd'
-import { Suspense } from 'react'
+import React, { Suspense } from 'react'
 
 /**
  * @description 路由懒加载HOC

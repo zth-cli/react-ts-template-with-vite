@@ -53,7 +53,7 @@ export const getStyle = (element: HTMLElement, styleName: keyof CSSProperties): 
 export const setStyle = (
   element: HTMLElement,
   styleName: CSSProperties | keyof CSSProperties,
-  value?: string | number
+  value?: string | number,
 ) => {
   if (!element || !styleName) {
     return
@@ -61,7 +61,7 @@ export const setStyle = (
 
   if (isObject(styleName)) {
     Object.entries(styleName).forEach(([prop, value]) =>
-      setStyle(element, <CSSProperties | keyof CSSProperties>prop, value)
+      setStyle(element, <CSSProperties | keyof CSSProperties>prop, value),
     )
   } else {
     const key: any = camelize(styleName)

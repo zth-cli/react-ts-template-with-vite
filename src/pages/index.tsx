@@ -1,4 +1,4 @@
-import { useQuery } from '@/hooks/useQuery'
+import { useGetQuery } from '@/hooks/useQuery'
 import { Button, List } from 'antd'
 
 export interface Iitem {
@@ -13,7 +13,7 @@ export interface IndexResponse {
 }
 export default function Index() {
   const [url, setUrl] = useState('/v2/baiduhot')
-  const { data, error, loading } = useQuery<IndexResponse>(url)
+  const { data, error, loading } = useGetQuery<IndexResponse>(url)
   const changeUrl = () => {
     setUrl('/v2/douyinhot')
   }
