@@ -1,8 +1,16 @@
 import { Route, RouteObject, Routes } from 'react-router-dom'
 import { router } from './router'
 import AuthRoute from './router/AuthRoute'
+import { apiGet } from '@/api'
 
 const App = () => {
+  useEffect(() => {
+    console.log(1)
+
+    apiGet('/api/getUserInfo').then((res) => {
+      console.log(res)
+    })
+  }, [])
   // 处理我们的routers
   const RouteAuthFun = (routeList: RouteObject[]) => {
     return routeList.map((item) => {
@@ -14,6 +22,7 @@ const App = () => {
       )
     })
   }
+
   return <Routes>{RouteAuthFun(router)}</Routes>
 }
 export default App
