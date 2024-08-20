@@ -11,7 +11,7 @@
 export function getUrlParamsToObj(baseUrl?: string) {
   const url = baseUrl ? baseUrl : location.search
   const params = url.split('?')[1] //获取url中"?*"符后的字串
-  const theRequest: { [x: string]: any } = {}
+  const theRequest: { [x: string]: unknown } = {}
   if (params) {
     const strs = params.split('&')
     for (let i = 0; i < strs.length; i++) {

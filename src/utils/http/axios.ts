@@ -73,7 +73,7 @@ class FetchHttp {
   // 请求拦截器
   private interceptorsRequest(): void {
     FetchHttp.axiosInstance.interceptors.request.use(
-      (config: InternalAxiosRequestConfig<any> & { parallel?: boolean }) => {
+      (config: InternalAxiosRequestConfig<unknown> & { parallel?: boolean }) => {
         const _config = config
         if (!_config.parallel) {
           // 1.设置一个请求标识
@@ -85,7 +85,9 @@ class FetchHttp {
             this.sourceTokenList.push({ cancelKey, cancelHandler })
           })
           this.cancelRepeatRequest()
-          this.interceptors?.request && this.interceptors?.request(_config)
+          if (this.interceptors?.request) {
+            this.interceptors?.request(_config)
+          }
         }
         return _config
       },
@@ -104,7 +106,9 @@ class FetchHttp {
         const cancelKey = FetchHttp.setCancelTokenString(_config)
         this.deleteCancelTokenString(cancelKey)
         this.currentCabcelToken = ''
-        this.interceptors?.response && this.interceptors?.response(response)
+        if (this.interceptors?.response) {
+          this.interceptors?.response(response)
+        }
         return response.data
       },
       (error: FetchHttppError) => {
@@ -144,23 +148,23 @@ class FetchHttp {
     // 单独处理自定义请求/响应回掉
     return new Promise((resolve, reject) => {
       FetchHttp.axiosInstance
-        .request<any, T>(config)
+        .request<unknown, T>(config)
         .then((response) => {
           resolve(response)
         })
-        .catch((error: any) => {
+        .catch((error: Error) => {
           reject(error)
         })
     })
   }
-  public post<T>(url: string, params?: any, config?: AxiosRequestConfigs): Promise<T> {
+  public post<T>(url: string, params?: unknown, config?: AxiosRequestConfigs): Promise<T> {
     return this.request<T>('post', url, params, config)
   }
 
-  public get<T>(url: string, params?: any, config?: AxiosRequestConfigs): Promise<T> {
+  public get<T>(url: string, params?: unknown, config?: AxiosRequestConfigs): Promise<T> {
     return this.request<T>('get', url, params, config)
   }
-  public async dowmload(url: string, params: any, fileName: string, fileType: keyof typeof FILES_TYPES = 'xls') {
+  public async dowmload(url: string, params: unknown, fileName: string, fileType: keyof typeof FILES_TYPES = 'xls') {
     const res = await this.request<BlobPart>('get', url, params, { responseType: 'blob' })
     const blob: Blob = new Blob([res], { type: FILES_TYPES[fileType] || 'application/vnd.ms-excel' })
     const link: HTMLAnchorElement = document.createElement('a')

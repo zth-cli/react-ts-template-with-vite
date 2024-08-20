@@ -7,6 +7,6 @@ export const isJSON = (str: string): boolean | undefined => {
     const obj = JSON.parse(str)
     return !!(typeof obj === 'object' && obj)
   } catch (e) {
-    return false
+    return !e
   }
 }

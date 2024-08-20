@@ -1,5 +1,6 @@
 /**
  * @description: 是否已定义
+ * @example isDef(null) // false
  */
 export const isDef = <T = unknown>(val?: T): val is T => {
   return typeof val !== 'undefined'

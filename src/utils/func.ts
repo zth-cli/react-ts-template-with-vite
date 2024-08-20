@@ -88,7 +88,7 @@ export const randomIp = () =>
     .join('.')
 
 // 下划线转驼峰
-// eslint-disable-next-line no-useless-escape
+
 export const toHump = (str: string) => str.replace(/_(\w)/g, (all: any, letter: string) => letter.toUpperCase())
 
 // 驼峰转下划线横线
